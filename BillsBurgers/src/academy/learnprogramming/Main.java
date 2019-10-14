@@ -71,6 +71,52 @@ class Hamburger {
 
 }
 
+class HealthyBurger extends Hamburger {
+    private String toppingName4;
+    private double toppingPrice4;
+
+    private String toppingName5;
+    private double toppingPrice5;
+
+    public HealthyBurger(double price, String meat) {
+        super("Healthy Browneye", price, "Lean Browneye Patty", "Brown rye bread");
+
+    }
+
+    public void addHealthyTopping4(String name, double price) {
+        this.toppingName4 = name;
+        this.toppingPrice4 = price;
+    }
+
+    public void addHealthyTopping5(String name, double price) {
+        this.toppingName5 = name;
+        this.toppingPrice5 = price;
+    }
+
+    @Override
+    public double totalCost() {
+        double healthyPrice = super.totalCost();
+        if(toppingName4 != null) {
+            healthyPrice += toppingPrice4;
+            System.out.println("Added " + this.toppingName4 + " for " + this.toppingPrice4);
+
+        }
+        if(toppingName5 != null) {
+            healthyPrice += toppingPrice5;
+            System.out.println("Added " + this.toppingName5 + " for " + this.toppingPrice5);
+        }
+        return healthyPrice;
+    }
+}
+
+class Delux extends Hamburger {
+    public Delux() {
+        super("Delux BrownWyw", 12.32, "BrownEye Prime", "Browneye Bun");
+        super.addHamburgerTopping("Chips", 2.32);
+        super.addHamburgerTopping1("drink", 1.43);
+    }
+}
+
 public class Main {
 
     public static void main(String[] args) {
@@ -82,5 +128,13 @@ public class Main {
         brownEye.addHamburgerTopping2("dick cheese", 2.50);
         brownEye.addHamburgerTopping3("Schmegma", 0.25);
         System.out.println("Total BrownEye price is: " + brownEye.totalCost());
+
+        HealthyBurger healthyBrownEye = new HealthyBurger(15.00, "Healthy BrownEye Patty");
+        healthyBrownEye.addHealthyTopping4("Choad Greese", 1.35);
+        healthyBrownEye.addHealthyTopping5("Speutum", 1.32);
+        System.out.println("Total healthy browneye price is: " + healthyBrownEye.totalCost());
+
+        Delux deluxBrownEye = new Delux();
+        System.out.println("Total Delux BrownEye price is: " + deluxBrownEye.totalCost());
     }
 }
